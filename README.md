@@ -1,30 +1,23 @@
-# UC8 - Password Validation (Rule 4)
+# UC9 - Email Sample Validation
 
 ## Description
 
-This branch implements **Use Case 8 (UC8)** of the User Registration System.
+This branch implements **Use Case 9 (UC9)** of the User Registration System.
 
-The objective is to validate a user's **password** based on **Rule 4** using **Java Regular Expressions (Regex)**.
+The objective is to validate multiple **valid and invalid email samples** using Java Regular Expressions (Regex) to ensure the email validation logic works correctly.
 
 ---
 
 ## Requirement
 
-The password should satisfy the following conditions:
-
-- Must contain **at least 8 characters**.
-- Must contain **at least one uppercase letter**.
-- Must contain **at least one numeric digit**.
-- Must contain **exactly one special character**.
-
-> **Note:** Rule 4 builds upon Rule 1, Rule 2, and Rule 3.
+Validate different email formats and verify whether they are accepted or rejected based on the defined email validation regex.
 
 ---
 
 ## Regex Used
 
 ```regex
-^(?=.*[A-Z])(?=.*\d)(?=[^@#$%^&+=!]*[@#$%^&+=!][^@#$%^&+=!]*$).{8,}$
+^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)?@[a-zA-Z0-9]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$
 ```
 
 ---
@@ -34,33 +27,31 @@ The password should satisfy the following conditions:
 | Regex | Meaning |
 |--------|---------|
 | `^` | Start of the string |
-| `(?=.*[A-Z])` | Ensures at least one uppercase letter exists |
-| `(?=.*\d)` | Ensures at least one numeric digit exists |
-| `(?=[^@#$%^&+=!]*[@#$%^&+=!][^@#$%^&+=!]*$)` | Ensures exactly one special character exists |
-| `.{8,}` | Minimum 8 characters |
+| `[a-zA-Z0-9]+` | Username |
+| `(\.[a-zA-Z0-9]+)?` | Optional dot followed by characters |
+| `@` | Mandatory separator |
+| `[a-zA-Z0-9]+` | Domain name |
+| `\.[a-zA-Z]{2,}` | Domain extension |
+| `(\.[a-zA-Z]{2,})?` | Optional country extension |
 | `$` | End of the string |
 
 ---
 
-## Valid Examples
+## Test Cases
+
+### Valid Emails
 
 ```text
-Password1@
-Aryan123#
-Hello123$
-Java2026!
+Aryan@gmail.com
+aryan.pujari@gmail.com
+aryan123@yahoo.co.in
 ```
 
----
-
-## Invalid Examples
+### Invalid Emails
 
 ```text
-Password1
-Password1@@
-password1@
-Password@
-Hello123##
+aryan@gmail
+aryan@@gmail.com
 ```
 
 ---
@@ -88,23 +79,22 @@ src
 ## Branch
 
 ```text
-feature/uc8-password-rule4
+feature/uc9-email-sample-validation
 ```
 
 ---
 
 ## Learning Outcome
 
-After completing UC8, you will understand:
+After completing UC9, you will understand:
 
-- Positive Lookahead `(?=...)`
-- Combining multiple validation rules
-- Validating uppercase letters, digits, and special characters
-- Restricting a password to exactly one special character
-- Password validation using Regular Expressions
+- Email validation using Regular Expressions
+- Testing multiple valid and invalid email samples
+- Verifying regex behavior against different input formats
+- Manual validation using Java
 
 ---
 
 ## Status
 
-✅ UC8 Completed
+✅ UC9 Completed
