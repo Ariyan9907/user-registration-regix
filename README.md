@@ -1,10 +1,10 @@
-# UC7 - Password Validation (Rule 3)
+# UC8 - Password Validation (Rule 4)
 
 ## Description
 
-This branch implements **Use Case 7 (UC7)** of the User Registration System.
+This branch implements **Use Case 8 (UC8)** of the User Registration System.
 
-The objective is to validate a user's **password** based on **Rule 3** using **Java Regular Expressions (Regex)**.
+The objective is to validate a user's **password** based on **Rule 4** using **Java Regular Expressions (Regex)**.
 
 ---
 
@@ -15,15 +15,16 @@ The password should satisfy the following conditions:
 - Must contain **at least 8 characters**.
 - Must contain **at least one uppercase letter**.
 - Must contain **at least one numeric digit**.
+- Must contain **exactly one special character**.
 
-> **Note:** Rule 3 builds upon Rule 1 and Rule 2.
+> **Note:** Rule 4 builds upon Rule 1, Rule 2, and Rule 3.
 
 ---
 
 ## Regex Used
 
 ```regex
-^(?=.*[A-Z])(?=.*\d).{8,}$
+^(?=.*[A-Z])(?=.*\d)(?=[^@#$%^&+=!]*[@#$%^&+=!][^@#$%^&+=!]*$).{8,}$
 ```
 
 ---
@@ -35,8 +36,8 @@ The password should satisfy the following conditions:
 | `^` | Start of the string |
 | `(?=.*[A-Z])` | Ensures at least one uppercase letter exists |
 | `(?=.*\d)` | Ensures at least one numeric digit exists |
-| `.` | Matches any character |
-| `{8,}` | Minimum 8 characters |
+| `(?=[^@#$%^&+=!]*[@#$%^&+=!][^@#$%^&+=!]*$)` | Ensures exactly one special character exists |
+| `.{8,}` | Minimum 8 characters |
 | `$` | End of the string |
 
 ---
@@ -44,10 +45,10 @@ The password should satisfy the following conditions:
 ## Valid Examples
 
 ```text
-Password1
-Hello123
-Aryan2026
-JAVA1234
+Password1@
+Aryan123#
+Hello123$
+Java2026!
 ```
 
 ---
@@ -55,11 +56,11 @@ JAVA1234
 ## Invalid Examples
 
 ```text
-Password
-password1
-ABCDEFGH
-Pass12
-12345678
+Password1
+Password1@@
+password1@
+Password@
+Hello123##
 ```
 
 ---
@@ -87,22 +88,23 @@ src
 ## Branch
 
 ```text
-feature/uc7-password-rule3
+feature/uc8-password-rule4
 ```
 
 ---
 
 ## Learning Outcome
 
-After completing UC7, you will understand:
+After completing UC8, you will understand:
 
 - Positive Lookahead `(?=...)`
-- Numeric digit validation using `\d`
-- Combining multiple lookaheads
+- Combining multiple validation rules
+- Validating uppercase letters, digits, and special characters
+- Restricting a password to exactly one special character
 - Password validation using Regular Expressions
 
 ---
 
 ## Status
 
-✅ UC7 Completed
+✅ UC8 Completed
