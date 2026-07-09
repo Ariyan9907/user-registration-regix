@@ -1,27 +1,28 @@
-# UC5 - Password Validation (Rule 1)
+# UC6 - Password Validation (Rule 2)
 
 ## Description
 
-This branch implements **Use Case 5 (UC5)** of the User Registration System.
+This branch implements **Use Case 6 (UC6)** of the User Registration System.
 
-The objective is to validate a user's **password** based on **Rule 1** using **Java Regular Expressions (Regex)**.
+The objective is to validate a user's **password** based on **Rule 2** using **Java Regular Expressions (Regex)**.
 
 ---
 
 ## Requirement
 
-The password should satisfy the following condition:
+The password should satisfy the following conditions:
 
 - Must contain **at least 8 characters**.
+- Must contain **at least one uppercase letter**.
 
-> **Note:** This is only **Rule 1**. Additional password rules will be implemented in the upcoming use cases (UC6, UC7, and UC8).
+> **Note:** Rule 2 builds upon Rule 1. The remaining password rules will be implemented in UC7 and UC8.
 
 ---
 
 ## Regex Used
 
 ```regex
-^.{8,}$
+^(?=.*[A-Z]).{8,}$
 ```
 
 ---
@@ -31,6 +32,7 @@ The password should satisfy the following condition:
 | Regex | Meaning |
 |--------|---------|
 | `^` | Start of the string |
+| `(?=.*[A-Z])` | Ensures at least one uppercase letter exists |
 | `.` | Matches any character |
 | `{8,}` | Minimum 8 characters |
 | `$` | End of the string |
@@ -41,10 +43,9 @@ The password should satisfy the following condition:
 
 ```text
 Password
-Password123
+Hello123
 Aryan123
-abcdefgh
-12345678
+JAVAabcd
 ```
 
 ---
@@ -52,10 +53,11 @@ abcdefgh
 ## Invalid Examples
 
 ```text
-Pass123
-Hello
-1234567
-abc123
+password
+aryan123
+abcdefgh
+12345678
+Pass12
 ```
 
 ---
@@ -83,22 +85,22 @@ src
 ## Branch
 
 ```text
-feature/uc5-password-rule1
+feature/uc6-password-rule2
 ```
 
 ---
 
 ## Learning Outcome
 
-After completing UC5, you will understand:
+After completing UC6, you will understand:
 
-- The `.` wildcard character
-- Quantifiers (`{8,}`)
-- Password length validation
-- Regex anchors (`^` and `$`)
+- Positive Lookahead `(?=...)`
+- Uppercase letter validation
+- Combining multiple validation rules
+- Password validation using Regular Expressions
 
 ---
 
 ## Status
 
-✅ UC5 Completed
+✅ UC6 Completed
