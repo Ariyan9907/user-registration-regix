@@ -5,6 +5,7 @@ public class UserRegistrationTest {
         UserRegistration userRegistration = new UserRegistration();
         System.out.println(userRegistration.validateFirstName("Aryan"));
         System.out.println(userRegistration.validateLastName("Pujari"));
+        System.out.println(userRegistration.validateEmail("Aryan@gmail.com"));
     }
 
 }
