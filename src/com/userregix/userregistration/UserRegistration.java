@@ -20,4 +20,10 @@ public class UserRegistration {
         String regex = "^[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)?@[a-zA-Z0-9]+\\.[a-zA-Z]{2,}(\\.[a-zA-Z]{2,})?$";
         return Pattern.matches(regex,email);
     }
+
+    //validate number
+    public boolean validateNumber(String number){
+        String regix="^[0-9]{2}\\s[0-9]{10}$";
+        return Pattern.matches(regix,number);
+    }
 }

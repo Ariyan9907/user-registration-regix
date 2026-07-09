@@ -1,45 +1,33 @@
-# UC3 - Email Validation
+# UC4 - Mobile Number Validation
 
 ## Description
 
-This branch implements **Use Case 3 (UC3)** of the User Registration System.
+This branch implements **Use Case 4 (UC4)** of the User Registration System.
 
-The objective is to validate a user's **email address** using **Java Regular Expressions (Regex)**.
+The objective is to validate a user's **mobile number** using **Java Regular Expressions (Regex)**.
 
 ---
 
 ## Requirement
 
-The email should satisfy the following conditions:
+The mobile number should satisfy the following conditions:
 
-- Contains a valid username.
-- May contain an optional '.' followed by additional characters.
-- Must contain exactly one '@' symbol.
-- Must contain a valid domain name.
-- Must contain a valid domain extension.
-- May contain an optional country extension.
+- Country code must contain exactly **2 digits**.
+- Country code must be followed by **one space**.
+- Mobile number must contain exactly **10 digits**.
 
 Example:
 
 ```text
-abc.xyz@bl.co.in
+91 9482928131
 ```
-
-Where:
-
-- `abc` → Mandatory username
-- `.xyz` → Optional
-- `@` → Mandatory
-- `bl` → Mandatory domain
-- `.co` → Mandatory extension
-- `.in` → Optional country extension
 
 ---
 
 ## Regex Used
 
 ```regex
-^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)?@[a-zA-Z0-9]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$
+^\d{2}\s\d{10}$
 ```
 
 ---
@@ -48,27 +36,20 @@ Where:
 
 | Regex | Meaning |
 |--------|---------|
-| `^` | Start of string |
-| `[a-zA-Z0-9]+` | Username (one or more letters/digits) |
-| `(\.[a-zA-Z0-9]+)?` | Optional `.xyz` part |
-| `@` | Mandatory separator |
-| `[a-zA-Z0-9]+` | Domain name |
-| `\.` | Dot before extension |
-| `[a-zA-Z]{2,}` | Domain extension (co, com, org, etc.) |
-| `(\.[a-zA-Z]{2,})?` | Optional country extension (in, uk, us, etc.) |
-| `$` | End of string |
+| `^` | Start of the string |
+| `\d{2}` | Exactly 2 digits (Country Code) |
+| `\s` | Exactly one whitespace |
+| `\d{10}` | Exactly 10 digits (Mobile Number) |
+| `$` | End of the string |
 
 ---
 
 ## Valid Examples
 
 ```text
-abc@bl.co
-abc.xyz@bl.co
-abc@bl.co.in
-abc.xyz@bl.co.in
-john@gmail.com
-john123@gmail.co.in
+91 9482928131
+12 1234567890
+99 9999999999
 ```
 
 ---
@@ -76,13 +57,12 @@ john123@gmail.co.in
 ## Invalid Examples
 
 ```text
-abcgmail.com
-@gmail.com
-abc@
-abc@.com
-abc@gmail
-abc@gmail.
-abc..xyz@gmail.com
+919482928131
+91-9482928131
+91 948292813
+91 94829281311
+9 9482928131
+9194 82928131
 ```
 
 ---
@@ -91,13 +71,11 @@ abc..xyz@gmail.com
 
 ```
 src
-├── main
-│   └── java
-│       └── UserRegistration.java
-│
-└── test
-    └── java
-        └── UserRegistrationTest.java
+└── com
+    └── userregix
+        └── userregistration
+            ├── UserRegistration.java
+            └── UserRegistrationTest.java
 ```
 
 ---
@@ -105,31 +83,30 @@ src
 ## Technologies Used
 
 - Java
-- Java Regex (`Pattern.matches()`)
-- JUnit 5
+- Java Regular Expressions (Regex)
 
 ---
 
 ## Branch
 
-```
-feature/uc3-email-validation
+```text
+feature/uc4-mobile-number-validation
 ```
 
 ---
 
 ## Learning Outcome
 
-After completing UC3, you will understand:
+After completing UC4, you will understand:
 
-- Character classes
-- Groups `()`
-- Optional groups `?`
-- Escaping special characters (`\\.`)
-- Email validation using Regular Expressions
+- Digit matching using `\d`
+- Whitespace matching using `\s`
+- Quantifiers (`{2}`, `{10}`)
+- Anchors (`^` and `$`)
+- Mobile number validation using Regular Expressions
 
 ---
 
 ## Status
 
-✅ UC3 Completed
+✅ UC4 Completed
