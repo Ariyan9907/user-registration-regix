@@ -1,20 +1,20 @@
-# UC1 - First Name Validation
+# UC2 - Last Name Validation
 
 ## Description
 
-This branch implements **Use Case 1 (UC1)** of the User Registration System.
+This branch implements **Use Case 2 (UC2)** of the User Registration System.
 
-The objective is to validate the user's **first name** using **Java Regular Expressions (Regex)**.
+The objective is to validate the user's **last name** using **Java Regular Expressions (Regex)**.
 
 ---
 
 ## Requirement
 
-The first name should satisfy the following conditions:
+The last name should satisfy the following conditions:
 
 - The first letter must be an uppercase alphabet (`A-Z`).
 - The remaining characters must be lowercase alphabets (`a-z`).
-- The first name must contain at least **3 characters**.
+- The last name must contain at least **3 characters**.
 
 ---
 
@@ -38,10 +38,10 @@ The first name should satisfy the following conditions:
 ## Valid Examples
 
 ```text
-Aryan
-John
-Ravi
-Kiran
+Pujari
+Sharma
+Patil
+Rao
 ```
 
 ---
@@ -49,11 +49,11 @@ Kiran
 ## Invalid Examples
 
 ```text
-aryan      // Starts with lowercase
-ARyan      // Contains uppercase after first letter
-Ar         // Less than 3 characters
-123Aryan   // Starts with digits
-Aryan1     // Contains number
+pujari      // Starts with lowercase
+PUJARI      // Contains uppercase letters after the first character
+Pu          // Less than 3 characters
+123Patil    // Starts with digits
+Patil1      // Contains numbers
 ```
 
 ---
@@ -62,11 +62,10 @@ Aryan1     // Contains number
 
 ```
 src
-└── main
-    └── java
-        └── UserRegistration.java
-
-src
+├── main
+│   └── java
+│       └── UserRegistration.java
+│
 └── test
     └── java
         └── UserRegistrationTest.java
@@ -85,11 +84,22 @@ src
 ## Branch
 
 ```
-feature/uc1-first-name-validation
+feature/uc2-last-name-validation
 ```
+
+---
+
+## Learning Outcome
+
+After completing this use case, you will understand:
+
+- Character classes (`[A-Z]`, `[a-z]`)
+- Quantifiers (`{2,}`)
+- Anchors (`^` and `$`)
+- Input validation using `Pattern.matches()`
 
 ---
 
 ## Status
 
-✅ UC1 Completed
+✅ UC2 Completed
