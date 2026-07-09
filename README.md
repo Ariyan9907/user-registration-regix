@@ -1,10 +1,10 @@
-# UC6 - Password Validation (Rule 2)
+# UC7 - Password Validation (Rule 3)
 
 ## Description
 
-This branch implements **Use Case 6 (UC6)** of the User Registration System.
+This branch implements **Use Case 7 (UC7)** of the User Registration System.
 
-The objective is to validate a user's **password** based on **Rule 2** using **Java Regular Expressions (Regex)**.
+The objective is to validate a user's **password** based on **Rule 3** using **Java Regular Expressions (Regex)**.
 
 ---
 
@@ -14,15 +14,16 @@ The password should satisfy the following conditions:
 
 - Must contain **at least 8 characters**.
 - Must contain **at least one uppercase letter**.
+- Must contain **at least one numeric digit**.
 
-> **Note:** Rule 2 builds upon Rule 1. The remaining password rules will be implemented in UC7 and UC8.
+> **Note:** Rule 3 builds upon Rule 1 and Rule 2.
 
 ---
 
 ## Regex Used
 
 ```regex
-^(?=.*[A-Z]).{8,}$
+^(?=.*[A-Z])(?=.*\d).{8,}$
 ```
 
 ---
@@ -33,6 +34,7 @@ The password should satisfy the following conditions:
 |--------|---------|
 | `^` | Start of the string |
 | `(?=.*[A-Z])` | Ensures at least one uppercase letter exists |
+| `(?=.*\d)` | Ensures at least one numeric digit exists |
 | `.` | Matches any character |
 | `{8,}` | Minimum 8 characters |
 | `$` | End of the string |
@@ -42,10 +44,10 @@ The password should satisfy the following conditions:
 ## Valid Examples
 
 ```text
-Password
+Password1
 Hello123
-Aryan123
-JAVAabcd
+Aryan2026
+JAVA1234
 ```
 
 ---
@@ -53,11 +55,11 @@ JAVAabcd
 ## Invalid Examples
 
 ```text
-password
-aryan123
-abcdefgh
-12345678
+Password
+password1
+ABCDEFGH
 Pass12
+12345678
 ```
 
 ---
@@ -85,22 +87,22 @@ src
 ## Branch
 
 ```text
-feature/uc6-password-rule2
+feature/uc7-password-rule3
 ```
 
 ---
 
 ## Learning Outcome
 
-After completing UC6, you will understand:
+After completing UC7, you will understand:
 
 - Positive Lookahead `(?=...)`
-- Uppercase letter validation
-- Combining multiple validation rules
+- Numeric digit validation using `\d`
+- Combining multiple lookaheads
 - Password validation using Regular Expressions
 
 ---
 
 ## Status
 
-✅ UC6 Completed
+✅ UC7 Completed
