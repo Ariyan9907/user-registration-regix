@@ -1,33 +1,27 @@
-# UC4 - Mobile Number Validation
+# UC5 - Password Validation (Rule 1)
 
 ## Description
 
-This branch implements **Use Case 4 (UC4)** of the User Registration System.
+This branch implements **Use Case 5 (UC5)** of the User Registration System.
 
-The objective is to validate a user's **mobile number** using **Java Regular Expressions (Regex)**.
+The objective is to validate a user's **password** based on **Rule 1** using **Java Regular Expressions (Regex)**.
 
 ---
 
 ## Requirement
 
-The mobile number should satisfy the following conditions:
+The password should satisfy the following condition:
 
-- Country code must contain exactly **2 digits**.
-- Country code must be followed by **one space**.
-- Mobile number must contain exactly **10 digits**.
+- Must contain **at least 8 characters**.
 
-Example:
-
-```text
-91 9482928131
-```
+> **Note:** This is only **Rule 1**. Additional password rules will be implemented in the upcoming use cases (UC6, UC7, and UC8).
 
 ---
 
 ## Regex Used
 
 ```regex
-^\d{2}\s\d{10}$
+^.{8,}$
 ```
 
 ---
@@ -37,9 +31,8 @@ Example:
 | Regex | Meaning |
 |--------|---------|
 | `^` | Start of the string |
-| `\d{2}` | Exactly 2 digits (Country Code) |
-| `\s` | Exactly one whitespace |
-| `\d{10}` | Exactly 10 digits (Mobile Number) |
+| `.` | Matches any character |
+| `{8,}` | Minimum 8 characters |
 | `$` | End of the string |
 
 ---
@@ -47,9 +40,11 @@ Example:
 ## Valid Examples
 
 ```text
-91 9482928131
-12 1234567890
-99 9999999999
+Password
+Password123
+Aryan123
+abcdefgh
+12345678
 ```
 
 ---
@@ -57,12 +52,10 @@ Example:
 ## Invalid Examples
 
 ```text
-919482928131
-91-9482928131
-91 948292813
-91 94829281311
-9 9482928131
-9194 82928131
+Pass123
+Hello
+1234567
+abc123
 ```
 
 ---
@@ -90,23 +83,22 @@ src
 ## Branch
 
 ```text
-feature/uc4-mobile-number-validation
+feature/uc5-password-rule1
 ```
 
 ---
 
 ## Learning Outcome
 
-After completing UC4, you will understand:
+After completing UC5, you will understand:
 
-- Digit matching using `\d`
-- Whitespace matching using `\s`
-- Quantifiers (`{2}`, `{10}`)
-- Anchors (`^` and `$`)
-- Mobile number validation using Regular Expressions
+- The `.` wildcard character
+- Quantifiers (`{8,}`)
+- Password length validation
+- Regex anchors (`^` and `$`)
 
 ---
 
 ## Status
 
-✅ UC4 Completed
+✅ UC5 Completed

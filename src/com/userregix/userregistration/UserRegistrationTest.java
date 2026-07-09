@@ -7,6 +7,7 @@ public class UserRegistrationTest {
         System.out.println(userRegistration.validateLastName("Pujari"));
         System.out.println(userRegistration.validateEmail("Aryan@gmail.com"));
         System.out.println(userRegistration.validateNumber("91 9482928131"));
+        System.out.println(userRegistration.validatePassword("123@Ar45678"));
     }
 
 }

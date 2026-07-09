@@ -23,7 +23,13 @@ public class UserRegistration {
 
     //validate number
     public boolean validateNumber(String number){
-        String regix="^[0-9]{2}\\s[0-9]{10}$";
-        return Pattern.matches(regix,number);
+        String regex="^[0-9]{2}\\s[0-9]{10}$";
+        return Pattern.matches(regex,number);
+    }
+
+    //validate password
+    public boolean validatePassword(String password){
+        String regex="^.{8,}$";
+        return Pattern.matches(regex,password);
     }
 }
