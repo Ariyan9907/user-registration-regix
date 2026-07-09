@@ -1,58 +1,27 @@
-# UC9 - Email Sample Validation
+# User Registration System Using Java Regex
 
 ## Description
 
-This branch implements **Use Case 9 (UC9)** of the User Registration System.
+This project demonstrates the implementation of a **User Registration System** using **Java Regular Expressions (Regex)**.
 
-The objective is to validate multiple **valid and invalid email samples** using Java Regular Expressions (Regex) to ensure the email validation logic works correctly.
+The project validates user details such as **First Name, Last Name, Email Address, Mobile Number, and Password** by implementing each requirement as an individual use case.
 
----
-
-## Requirement
-
-Validate different email formats and verify whether they are accepted or rejected based on the defined email validation regex.
+Each use case was developed on a separate feature branch and later merged into the `dev` branch following Git best practices.
 
 ---
 
-## Regex Used
+## Features
 
-```regex
-^[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)?@[a-zA-Z0-9]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$
-```
-
----
-
-## Regex Explanation
-
-| Regex | Meaning |
-|--------|---------|
-| `^` | Start of the string |
-| `[a-zA-Z0-9]+` | Username |
-| `(\.[a-zA-Z0-9]+)?` | Optional dot followed by characters |
-| `@` | Mandatory separator |
-| `[a-zA-Z0-9]+` | Domain name |
-| `\.[a-zA-Z]{2,}` | Domain extension |
-| `(\.[a-zA-Z]{2,})?` | Optional country extension |
-| `$` | End of the string |
-
----
-
-## Test Cases
-
-### Valid Emails
-
-```text
-Aryan@gmail.com
-aryan.pujari@gmail.com
-aryan123@yahoo.co.in
-```
-
-### Invalid Emails
-
-```text
-aryan@gmail
-aryan@@gmail.com
-```
+- First Name Validation
+- Last Name Validation
+- Email Validation
+- Mobile Number Validation
+- Password Validation
+    - Rule 1 – Minimum 8 Characters
+    - Rule 2 – At Least One Uppercase Letter
+    - Rule 3 – At Least One Numeric Digit
+    - Rule 4 – Exactly One Special Character
+- Email Sample Validation
 
 ---
 
@@ -73,28 +42,94 @@ src
 
 - Java
 - Java Regular Expressions (Regex)
+- Git
+- GitHub
 
 ---
 
-## Branch
+## Use Cases Implemented
 
-```text
-feature/uc9-email-sample-validation
-```
+| Use Case | Description | Status |
+|----------|-------------|--------|
+| UC1 | First Name Validation | ✅ |
+| UC2 | Last Name Validation | ✅ |
+| UC3 | Email Validation | ✅ |
+| UC4 | Mobile Number Validation | ✅ |
+| UC5 | Password Validation – Rule 1 | ✅ |
+| UC6 | Password Validation – Rule 2 | ✅ |
+| UC7 | Password Validation – Rule 3 | ✅ |
+| UC8 | Password Validation – Rule 4 | ✅ |
+| UC9 | Email Sample Validation | ✅ |
 
 ---
 
-## Learning Outcome
+## Validation Rules
 
-After completing UC9, you will understand:
+### First Name
 
-- Email validation using Regular Expressions
-- Testing multiple valid and invalid email samples
-- Verifying regex behavior against different input formats
-- Manual validation using Java
+- Starts with an uppercase letter.
+- Minimum 3 characters.
+
+### Last Name
+
+- Starts with an uppercase letter.
+- Minimum 3 characters.
+
+### Email
+
+- Valid username.
+- Valid domain.
+- Valid domain extension.
+
+### Mobile Number
+
+- Two-digit country code.
+- One whitespace.
+- Ten-digit mobile number.
+
+### Password
+
+- Minimum 8 characters.
+- At least one uppercase letter.
+- At least one numeric digit.
+- Exactly one special character.
+
+---
+
+## Learning Outcomes
+
+By completing this project, I learned:
+
+- Java Regular Expressions (Regex)
+- Character Classes
+- Quantifiers
+- Anchors (`^` and `$`)
+- Lookaheads (`(?=...)`)
+- Input Validation
+- Manual Testing
+- Git Branching Strategy
+- GitHub Workflow
+
+---
+
+## Git Workflow
+
+Each use case was developed using the following workflow:
+
+1. Create a feature branch from `dev`.
+2. Implement one use case.
+3. Commit changes with a meaningful commit message.
+4. Push the feature branch to GitHub.
+5. Merge the feature branch into `dev`.
+
+---
+
+## Author
+
+**Aryan Pujari**
 
 ---
 
 ## Status
 
-✅ UC9 Completed
+✅ Project Completed Successfully
