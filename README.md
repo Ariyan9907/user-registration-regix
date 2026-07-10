@@ -1,83 +1,242 @@
-# UC12 - Custom Exception Handling for User Registration
+# User Registration System Using Java Regex
 
 ## Description
 
-This branch implements **Use Case 12 (UC12)** of the User Registration System.
+The **User Registration System** is a Java-based application that validates user registration details using **Regular Expressions (Regex)**. The project was developed incrementally through **12 use cases (UC1–UC12)**, introducing concepts from basic regex validation to JUnit testing, parameterized testing, and custom exception handling.
 
-The objective is to refactor the validation logic to throw **Custom Exceptions** whenever invalid user details are entered instead of simply returning `false`.
-
-All existing JUnit and Parameterized Test Cases are updated to validate exceptions using `assertThrows()`.
+Each use case was implemented on a separate feature branch and merged into the `dev` branch using Git workflow best practices.
 
 ---
 
-## Requirement
+# Features
 
-Refactor the code to:
+The application validates the following user details:
 
-- Throw Custom Exceptions for invalid user details.
-- Rewrite all JUnit Test Cases to handle Custom Exceptions.
-- Validate all user inputs using exception handling.
+- First Name
+- Last Name
+- Email Address
+- Mobile Number
+- Password
 
----
+The project also includes:
 
-## Validations Covered
-
-- First Name Validation
-- Last Name Validation
-- Email Validation
-- Mobile Number Validation
-- Password Validation
-
-Each validation throws a `UserRegistrationException` when the input is invalid.
+- JUnit 5 Testing
+- Parameterized Testing
+- Custom Exception Handling
 
 ---
 
-## Custom Exception
+# Use Cases Implemented
 
-A custom exception class is created:
+| Use Case | Description | Status |
+|----------|-------------|--------|
+| UC1 | First Name Validation | ✅ |
+| UC2 | Last Name Validation | ✅ |
+| UC3 | Email Validation | ✅ |
+| UC4 | Mobile Number Validation | ✅ |
+| UC5 | Password Validation - Rule 1 (Minimum 8 Characters) | ✅ |
+| UC6 | Password Validation - Rule 2 (At Least One Uppercase Letter) | ✅ |
+| UC7 | Password Validation - Rule 3 (At Least One Numeric Digit) | ✅ |
+| UC8 | Password Validation - Rule 4 (Exactly One Special Character) | ✅ |
+| UC9 | Validate Multiple Email Samples | ✅ |
+| UC10 | JUnit Happy & Sad Test Cases | ✅ |
+| UC11 | JUnit Parameterized Testing | ✅ |
+| UC12 | Custom Exception Handling | ✅ |
 
-```java
-public class UserRegistrationException extends Exception {
+---
 
-    public UserRegistrationException(String message) {
-        super(message);
-    }
-}
+# Validation Rules
+
+## First Name
+
+- Starts with one uppercase letter.
+- Minimum 3 characters.
+
+Example:
+
+```
+Aryan
+John
 ```
 
 ---
 
-## JUnit Testing
+## Last Name
 
-### Valid Inputs
+- Starts with one uppercase letter.
+- Minimum 3 characters.
 
-- Uses `assertTrue()`
-- Test methods declare `throws UserRegistrationException`
+Example:
+
+```
+Pujari
+Sharma
+```
+
+---
+
+## Email
+
+Supports email formats such as:
+
+```
+abc@gmail.com
+abc.xyz@gmail.com
+abc@yahoo.co.in
+```
+
+---
+
+## Mobile Number
+
+Format:
+
+```
+91 9876543210
+```
+
+Rules:
+
+- Two-digit country code
+- One whitespace
+- Ten-digit mobile number
+
+---
+
+## Password
+
+### Rule 1
+
+- Minimum 8 characters
+
+### Rule 2
+
+- At least one uppercase letter
+
+### Rule 3
+
+- At least one numeric digit
+
+### Rule 4
+
+- Exactly one special character
+
+Example:
+
+```
+Password1@
+```
+
+---
+
+# Regex Concepts Covered
+
+- Character Classes
+
+```
+[A-Z]
+[a-z]
+[0-9]
+```
+
+- Quantifiers
+
+```
+*
++
+?
+{2}
+{2,}
+{2,5}
+```
+
+- Anchors
+
+```
+^
+$
+```
+
+- Groups
+
+```
+(...)
+```
+
+- Optional Groups
+
+```
+?
+```
+
+- Positive Lookahead
+
+```
+(?=.*[A-Z])
+
+(?=.*\d)
+
+(?=.*[@#$%^&+=!])
+```
+
+---
+
+# Testing
+
+## UC10
+
+JUnit Test Cases were written for:
+
+- First Name
+- Last Name
+- Email
+- Mobile Number
+- Password
+
+Both
+
+- Happy Test Cases
+- Sad Test Cases
+
+were implemented.
+
+---
+
+## UC11
+
+Parameterized Tests were implemented using
+
+```
+@ParameterizedTest
+
+@ValueSource
+```
+
+to validate multiple email addresses without duplicate test methods.
+
+---
+
+## UC12
+
+The validation logic was refactored to throw **Custom Exceptions** instead of returning `false`.
 
 Example:
 
 ```java
-assertTrue(userRegistration.validateEmail("aryan@gmail.com"));
+throw new UserRegistrationException("Invalid Email");
 ```
 
----
-
-### Invalid Inputs
-
-Uses `assertThrows()` to verify that a `UserRegistrationException` is thrown.
-
-Example:
+JUnit tests were updated using
 
 ```java
-assertThrows(
-    UserRegistrationException.class,
-    () -> userRegistration.validateEmail("abc")
-);
+assertThrows()
 ```
+
+to verify exception handling.
 
 ---
 
-## Project Structure
+# Project Structure
 
 ```
 src
@@ -92,38 +251,80 @@ src
 
 ---
 
-## Technologies Used
+# Technologies Used
 
 - Java
-- Java Regular Expressions (Regex)
+- Java Regex (Regular Expressions)
 - JUnit 5
 - Parameterized Tests
-- Custom Exception Handling
+- Exception Handling
+- Git
+- GitHub
 
 ---
 
-## Branch
+# Git Workflow
 
-```text
-feature/uc12-custom-exception-handling
+Each use case followed the same workflow:
+
+```bash
+git checkout dev
+git pull origin dev
+git checkout -b feature/<use-case>
+
+git add .
+
+git commit -m "[Aryan Pujari] Implement UCX: <Feature Name>"
+
+git push origin feature/<use-case>
+
+git checkout dev
+
+git merge feature/<use-case>
+
+git push origin dev
 ```
 
 ---
 
-## Learning Outcome
+# Learning Outcomes
 
-After completing UC12, you will understand:
+By completing this project, I learned:
 
-- Creating Custom Exceptions
-- Exception Handling in Java
-- Throwing Checked Exceptions
-- Using `throws` in JUnit Tests
-- Using `assertThrows()` for Exception Testing
-- Refactoring Validation Logic
-- Writing Robust Unit Tests
+- Java Regular Expressions
+- Character Classes
+- Quantifiers
+- Anchors
+- Groups
+- Lookaheads
+- Email Validation
+- Password Validation
+- Mobile Number Validation
+- JUnit 5
+- Parameterized Testing
+- Custom Exception Handling
+- Java Exception Hierarchy
+- Unit Testing
+- Git Branching Strategy
+- GitHub Workflow
+- Clean Project Organization
 
 ---
 
-## Status
+# Author
 
-✅ UC12 Completed
+**Aryan Pujari**
+
+---
+
+# Project Status
+
+✅ Completed
+
+**Total Use Cases Implemented:** 12
+
+**Testing:** Completed
+
+**Documentation:** Completed
+
+**Git Workflow:** Completed
