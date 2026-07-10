@@ -1,33 +1,26 @@
-# UC11 - JUnit Parameterized Testing for Email Validation
+# UC12 - Custom Exception Handling for User Registration
 
 ## Description
 
-This branch implements **Use Case 11 (UC11)** of the User Registration System.
+This branch implements **Use Case 12 (UC12)** of the User Registration System.
 
-The objective is to validate **multiple email addresses** using **JUnit 5 Parameterized Tests**.
+The objective is to refactor the validation logic to throw **Custom Exceptions** whenever invalid user details are entered instead of simply returning `false`.
 
-Instead of writing multiple individual test methods, a single parameterized test method is executed multiple times using different email inputs supplied by `@ValueSource`.
+All existing JUnit and Parameterized Test Cases are updated to validate exceptions using `assertThrows()`.
 
 ---
 
 ## Requirement
 
-Write **JUnit Parameterized Tests** to validate multiple email addresses.
+Refactor the code to:
 
-The implementation includes:
-
-- Valid Email Test Cases
-- Invalid Email Test Cases
-- Reusable test methods
-- Reduced duplicate code
+- Throw Custom Exceptions for invalid user details.
+- Rewrite all JUnit Test Cases to handle Custom Exceptions.
+- Validate all user inputs using exception handling.
 
 ---
 
-## Test Classes
-
-### UserRegistrationTest.java
-
-Contains JUnit test cases for:
+## Validations Covered
 
 - First Name Validation
 - Last Name Validation
@@ -35,40 +28,52 @@ Contains JUnit test cases for:
 - Mobile Number Validation
 - Password Validation
 
-using Happy and Sad test cases.
+Each validation throws a `UserRegistrationException` when the input is invalid.
 
 ---
 
-### UserRegistrationTestParam.java
+## Custom Exception
 
-Contains Parameterized Tests for Email Validation using:
-
-- `@ParameterizedTest`
-- `@ValueSource`
-
----
-
-## Parameterized Test Example
+A custom exception class is created:
 
 ```java
-@ParameterizedTest
-@ValueSource(strings = {
-    "aryan@gmail.com",
-    "aryan.ar@gmail.in"
-})
-public void givenValidEmails_WhenValidated_ShouldReturnTrue(String email) {
-    assertTrue(userRegistration.validateEmail(email));
+public class UserRegistrationException extends Exception {
+
+    public UserRegistrationException(String message) {
+        super(message);
+    }
 }
 ```
 
 ---
 
-## Benefits of Parameterized Tests
+## JUnit Testing
 
-- Less duplicate code
-- Better readability
-- Easy to add new test cases
-- Improved maintainability
+### Valid Inputs
+
+- Uses `assertTrue()`
+- Test methods declare `throws UserRegistrationException`
+
+Example:
+
+```java
+assertTrue(userRegistration.validateEmail("aryan@gmail.com"));
+```
+
+---
+
+### Invalid Inputs
+
+Uses `assertThrows()` to verify that a `UserRegistrationException` is thrown.
+
+Example:
+
+```java
+assertThrows(
+    UserRegistrationException.class,
+    () -> userRegistration.validateEmail("abc")
+);
+```
 
 ---
 
@@ -80,6 +85,7 @@ src
     └── userregix
         └── userregistration
             ├── UserRegistration.java
+            ├── UserRegistrationException.java
             ├── UserRegistrationTest.java
             └── UserRegistrationTestParam.java
 ```
@@ -92,29 +98,32 @@ src
 - Java Regular Expressions (Regex)
 - JUnit 5
 - Parameterized Tests
+- Custom Exception Handling
 
 ---
 
 ## Branch
 
 ```text
-feature/uc11-parameterized-email-validation
+feature/uc12-custom-exception-handling
 ```
 
 ---
 
 ## Learning Outcome
 
-After completing UC11, you will understand:
+After completing UC12, you will understand:
 
-- JUnit 5 Parameterized Testing
-- `@ParameterizedTest`
-- `@ValueSource`
-- Testing multiple inputs using a single test method
-- Writing reusable and maintainable unit tests
+- Creating Custom Exceptions
+- Exception Handling in Java
+- Throwing Checked Exceptions
+- Using `throws` in JUnit Tests
+- Using `assertThrows()` for Exception Testing
+- Refactoring Validation Logic
+- Writing Robust Unit Tests
 
 ---
 
 ## Status
 
-✅ UC11 Completed
+✅ UC12 Completed

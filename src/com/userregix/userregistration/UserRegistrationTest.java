@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserRegistrationTest {
     @Test
-    public void TestAcceptValidFirstname(){
+    public void TestAcceptValidFirstname() throws UserRegistrationException {
         UserRegistration userRegistration = new UserRegistration();
         boolean actual=userRegistration.validateFirstName("Aryan");
         assertTrue(actual);
@@ -16,19 +16,18 @@ public class UserRegistrationTest {
     @Test
     public void TesAcceptValidUserNameLength(){
         UserRegistration userRegistration = new UserRegistration();
-        boolean actual=userRegistration.validateFirstName("Ar");
-        assertFalse(actual);
+        assertThrows(UserRegistrationException.class,()->userRegistration.validateFirstName("Ar"));
     }
 
     @Test
-    public void TesAcceptValidUserNameUpper(){
+    public void TesAcceptInValidUserNameUpper(){
         UserRegistration userRegistration = new UserRegistration();
-        boolean actual=userRegistration.validateFirstName("aryan");
-        assertFalse(actual);
+        assertThrows(UserRegistrationException.class,()->userRegistration.validateFirstName("aryan"));
+
     }
 
     @Test
-    public void TestValidEmail(){
+    public void TestValidEmail() throws UserRegistrationException {
         UserRegistration userRegistration = new UserRegistration();
         boolean actual=userRegistration.validateEmail("aryan@gmail.com");
         assertTrue(actual);
@@ -37,12 +36,11 @@ public class UserRegistrationTest {
     @Test
     public void TestInValidEmail(){
         UserRegistration userRegistration = new UserRegistration();
-        boolean actual=userRegistration.validateEmail("aryan@@gmail.com");
-        assertFalse(actual);
+        assertThrows(UserRegistrationException.class,()-> userRegistration.validateEmail("ar@@"));
     }
 
     @Test
-    public void TestvalidLastName(){
+    public void TestvalidLastName() throws UserRegistrationException {
         UserRegistration userRegistration = new UserRegistration();
         boolean actual=userRegistration.validateLastName("Pujari");
         assertTrue(actual);
@@ -51,12 +49,11 @@ public class UserRegistrationTest {
     @Test
     public void TestInvalidLastName(){
         UserRegistration userRegistration = new UserRegistration();
-        boolean actual=userRegistration.validateLastName("ma");
-        assertFalse(actual);
+        assertThrows(UserRegistrationException.class,()->userRegistration.validateLastName("ma"));
     }
 
     @Test
-    public void TestValidMobileNumber(){
+    public void TestValidMobileNumber() throws UserRegistrationException {
         UserRegistration userRegistration = new UserRegistration();
         boolean actual=userRegistration.validateNumber("91 9864852582");
         assertTrue(actual);
@@ -65,12 +62,11 @@ public class UserRegistrationTest {
     @Test
     public void TestInValidMobileNumber(){
         UserRegistration userRegistration = new UserRegistration();
-        boolean actual=userRegistration.validateNumber("91@9864852582");
-        assertFalse(actual);
+        assertThrows(UserRegistrationException.class,()->userRegistration.validateNumber("91@9864852582"));
     }
 
     @Test
-    public void TestValidPassword(){
+    public void TestValidPassword() throws UserRegistrationException {
         UserRegistration userRegistration = new UserRegistration();
         boolean actual=userRegistration.validatePassword("Password1@");
         assertTrue(actual);
@@ -79,8 +75,7 @@ public class UserRegistrationTest {
     @Test
     public void TestInValidPassword(){
         UserRegistration userRegistration = new UserRegistration();
-        boolean actual=userRegistration.validatePassword("password@");
-        assertFalse(actual);
+        assertThrows(UserRegistrationException.class,()->userRegistration.validatePassword("password@"));
     }
 
 

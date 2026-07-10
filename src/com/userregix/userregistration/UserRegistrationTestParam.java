@@ -9,12 +9,13 @@ public class UserRegistrationTestParam {
     @ValueSource(strings = {"abc", "@gmail.com", "abc@gmail", "abc@@gmail.com", "abc@gmail."})
     public void givenInvalidEmails_WhenValidated_ShouldReturnFalse(String email) {
         UserRegistration userRegistration = new UserRegistration();
-        assertFalse(userRegistration.validateEmail(email));
+        assertThrows(UserRegistrationException.class,()->userRegistration.validateEmail(email));
+
     }
 
     @ParameterizedTest
     @ValueSource(strings={"aryan@gmai.com","aryan.ar@gamil.in"})
-    public void givenValidEmial_WhenValidated_ShouldReturnTrue(String email){
+    public void givenValidEmial_WhenValidated_ShouldReturnTrue(String email) throws UserRegistrationException {
         UserRegistration userRegistration = new UserRegistration();
         assertTrue(userRegistration.validateEmail(email));
     }
