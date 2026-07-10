@@ -1,26 +1,33 @@
-# UC10 - JUnit Testing for User Registration Validation
+# UC11 - JUnit Parameterized Testing for Email Validation
 
 ## Description
 
-This branch implements **Use Case 10 (UC10)** of the User Registration System.
+This branch implements **Use Case 11 (UC11)** of the User Registration System.
 
-The objective is to write **JUnit Test Cases** to validate all user registration fields using **Happy Test Cases** and **Sad Test Cases**.
+The objective is to validate **multiple email addresses** using **JUnit 5 Parameterized Tests**.
 
-The following validations are covered:
-
-- First Name
-- Last Name
-- Email Address
-- Mobile Number
-- Password
-
-Each validation contains positive (valid input) and negative (invalid input) test cases to verify the correctness of the Regular Expressions. :contentReference[oaicite:0]{index=0}
+Instead of writing multiple individual test methods, a single parameterized test method is executed multiple times using different email inputs supplied by `@ValueSource`.
 
 ---
 
 ## Requirement
 
-Write JUnit test cases for:
+Write **JUnit Parameterized Tests** to validate multiple email addresses.
+
+The implementation includes:
+
+- Valid Email Test Cases
+- Invalid Email Test Cases
+- Reusable test methods
+- Reduced duplicate code
+
+---
+
+## Test Classes
+
+### UserRegistrationTest.java
+
+Contains JUnit test cases for:
 
 - First Name Validation
 - Last Name Validation
@@ -28,39 +35,40 @@ Write JUnit test cases for:
 - Mobile Number Validation
 - Password Validation
 
-Test both:
-
-- Happy Test Cases (Valid Input)
-- Sad Test Cases (Invalid Input)
+using Happy and Sad test cases.
 
 ---
 
-## Test Coverage
+### UserRegistrationTestParam.java
 
-### First Name
+Contains Parameterized Tests for Email Validation using:
 
-- Valid First Name
-- Invalid First Name
+- `@ParameterizedTest`
+- `@ValueSource`
 
-### Last Name
+---
 
-- Valid Last Name
-- Invalid Last Name
+## Parameterized Test Example
 
-### Email
+```java
+@ParameterizedTest
+@ValueSource(strings = {
+    "aryan@gmail.com",
+    "aryan.ar@gmail.in"
+})
+public void givenValidEmails_WhenValidated_ShouldReturnTrue(String email) {
+    assertTrue(userRegistration.validateEmail(email));
+}
+```
 
-- Valid Email
-- Invalid Email
+---
 
-### Mobile Number
+## Benefits of Parameterized Tests
 
-- Valid Mobile Number
-- Invalid Mobile Number
-
-### Password
-
-- Valid Password
-- Invalid Password
+- Less duplicate code
+- Better readability
+- Easy to add new test cases
+- Improved maintainability
 
 ---
 
@@ -72,7 +80,8 @@ src
     └── userregix
         └── userregistration
             ├── UserRegistration.java
-            └── UserRegistrationTest.java
+            ├── UserRegistrationTest.java
+            └── UserRegistrationTestParam.java
 ```
 
 ---
@@ -80,31 +89,32 @@ src
 ## Technologies Used
 
 - Java
-- Regular Expressions (Regex)
+- Java Regular Expressions (Regex)
 - JUnit 5
+- Parameterized Tests
 
 ---
 
 ## Branch
 
 ```text
-feature/uc10-junit-user-validation
+feature/uc11-parameterized-email-validation
 ```
 
 ---
 
 ## Learning Outcome
 
-After completing UC10, you will understand:
+After completing UC11, you will understand:
 
-- Writing JUnit 5 Test Cases
-- Happy Test Cases
-- Sad Test Cases
-- Assertions (`assertTrue()`, `assertFalse()`)
-- Unit Testing for Regex Validation
+- JUnit 5 Parameterized Testing
+- `@ParameterizedTest`
+- `@ValueSource`
+- Testing multiple inputs using a single test method
+- Writing reusable and maintainable unit tests
 
 ---
 
 ## Status
 
-✅ UC10 Completed
+✅ UC11 Completed
